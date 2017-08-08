@@ -115,7 +115,9 @@ static int polaris10_get_dependency_volt_by_clk(struct pp_hwmgr *hwmgr,
 
 			*voltage |= 1 << PHASES_SHIFT;
 			//MOD UNDERVOLT
-			*voltage = (*voltage & 0xFFFF0000) + (( 925 * VOLTAGE_SCALE) & 0xFFFF);
+			// *voltage = (*voltage & 0xFFFF0000) + (( 925 * VOLTAGE_SCALE) & 0xFFFF);
+			*voltage = (*voltage & 0xFFFF0000) + 925 * VOLTAGE_SCALE;
+
 			//END UNDRVOLT
  			return 0;
 		}
@@ -140,7 +142,9 @@ static int polaris10_get_dependency_volt_by_clk(struct pp_hwmgr *hwmgr,
 		*mvdd = (uint32_t) dep_table->entries[i - 1].mvdd * VOLTAGE_SCALE;
 
 	//MOD UNDERVOLT
-	*voltage = (*voltage & 0xFFFF0000) + (( 925 * VOLTAGE_SCALE) & 0xFFFF);
+	// *voltage = (*voltage & 0xFFFF0000) + (( 925 * VOLTAGE_SCALE) & 0xFFFF);
+	*voltage = (*voltage & 0xFFFF0000) + 925 * VOLTAGE_SCALE;
+
 	//END UNDRVOLT
 	
 	return 0;
